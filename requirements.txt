@@ -1,0 +1,9 @@
+### dependency
+
+streamlit
+pandas
+st_pages
+st_files_connection
+s3fs
+streamlit_webrtc
+cv2
