@@ -1,13 +1,14 @@
 import streamlit as st
 import pandas as pd
 from st_files_connection import FilesConnection
-conn = st.connection('s3', type=FilesConnection)
 
 st.set_page_config(
     page_title="Dashboard",
     layout="wide",
     initial_sidebar_state='auto'
 )
+
+conn = st.connection('s3', type=FilesConnection)
 
 # Initialize Session State for df0 if not present
 if 'df0' not in st.session_state:
