@@ -2,6 +2,12 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import cv2
 
+st.set_page_config(
+    page_title="Dashboard",
+    layout="wide",
+    initial_sidebar_state='auto'
+)
+
 st.markdown('<style>div.block-container{padding-top:1.5rem;}</style>', unsafe_allow_html=True)
 
 st.markdown("<p style='font-size: 30px; font-weight: bold;'>Live Feed</p>", unsafe_allow_html=True)
