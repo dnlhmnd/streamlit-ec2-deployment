@@ -10,16 +10,53 @@ st.set_page_config(
 
 conn = st.connection('s3', type=FilesConnection)
 
+# Initialize Session State for df0 if not present
+if 'df0' not in st.session_state:
+    st.session_state.df0 = conn.read("shakeys-image-labels/shakeys-labeled-data.csv", input_format="csv", ttl=0)
+
+# List of Pizza Flavors
+pizza_flavors = [
+    "Classic Beef N' Onion Pizza Americana",
+    "Classic Cheese Pizza Americana",
+    "Classic Spinach Pizza Americana",
+    "Glazed Bacon Pizza Americana",
+    "Hawaiian Delight Pizza Americana",
+    "Hi Protein Pizza Americana",
+    "Angus Steakhouse Pizza",
+    "Belly Buster",
+    "Classic Beef N' Onion",
+    "Classic Cheese",
+    "Friday Special",
+    "Garlic N Cheese",
+    "Glazed Bacon",
+    "Hawaiian Delight",
+    "Hi Protein Supreme",
+    "Manager's Choice",
+    "Manager's Choice Pizza Americana",
+    "Merry Pepperoni Holiday Pizza",
+    "Pepperoni",
+    "Pepperoni Crrrunch",
+    "Pizza Bianca",
+    "Pizza Bianca Pizza Americana",
+    "Scallop Primo Pizza",
+    "Shakey's Special",
+    "Spinach & Glazed Bacon",
+    "Spinach & Mushroom",
+    "Spinach & Shrimp",
+    "Texas Chicken BBQ",
+    "Texas Chicken BBQ Pizza Americana",
+    "Truffle Four Cheese",
+    "Truffle Greens Pizza",
+]
+
+evaluation_options = ["Standard", "Non-Standard"]
+
 store_servers = [
     "Quezon Avenue",
     "SM North Edsa",
     "UPS WOW Center",
     "Magallanes"
 ]
-
-# Initialize Session State for df0 if not present
-if 'df0' not in st.session_state:
-    st.session_state.df0 = conn.read("shakeys-image-labels/shakeys-labeled-data.csv", input_format="csv", ttl=0)
     
 # Display the filtered DataFrame (df0)
 st.markdown("### Classified Images")
@@ -45,7 +82,7 @@ with container:
         # Multiselect filter for 'Pizza Classification'
         selected_pizza_classifications = st.multiselect(
             "Filter by Pizza Flavor:",
-            st.session_state.pizza_flavors,
+            pizza_flavors,
         )
 
 # Convert datetime64[ns] to date for comparison
@@ -74,7 +111,7 @@ filtered_df0.reset_index(drop=True, inplace=True)
 # Configure the SelectboxColumn for "Pizza Classification"
 classification_column_config = st.column_config.SelectboxColumn(
     "Pizza Classification",
-    options=st.session_state.pizza_flavors,
+    options=pizza_flavors,
     width="medium",
     required=True, 
 )
@@ -82,7 +119,7 @@ classification_column_config = st.column_config.SelectboxColumn(
 # Configure the SelectboxColumn for "Pizza Evaluation"
 evaluation_column_config = st.column_config.SelectboxColumn(
     "Pizza Evaluation",
-    options=st.session_state.evaluation_options,
+    options=evaluation_options,
     width="medium",
     required=True,  
 )
