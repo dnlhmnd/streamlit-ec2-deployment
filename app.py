@@ -74,9 +74,6 @@ pizza_flavors = [
 
 evaluation_options = ["Standard", "Non-Standard"]
 
-st.session_state.pizza_flavors = pizza_flavors
-st.session_state.evaluation_options = evaluation_options
-
 store_servers = [
     "Quezon Avenue",
     "SM North Edsa",
