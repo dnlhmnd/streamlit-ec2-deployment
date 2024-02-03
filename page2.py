@@ -3,6 +3,12 @@ import pandas as pd
 from st_files_connection import FilesConnection
 conn = st.connection('s3', type=FilesConnection)
 
+st.set_page_config(
+    page_title="Dashboard",
+    layout="wide",
+    initial_sidebar_state='auto'
+)
+
 # Initialize Session State for df0 if not present
 if 'df0' not in st.session_state:
     st.session_state.df0 = conn.read("shakeys-image-labels/shakeys-labeled-data.csv", input_format="csv", ttl=0)
