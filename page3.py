@@ -17,6 +17,43 @@ if 'df0' not in st.session_state:
 # Filter 'df0' DataFrame by "Pizza Evaluation" with "Non-Standard" values
 filtered_df0 = st.session_state.df0[st.session_state.df0["Pizza Evaluation"] == "Non-Standard"]
 
+# List of Pizza Flavors
+pizza_flavors = [
+    "Classic Beef N' Onion Pizza Americana",
+    "Classic Cheese Pizza Americana",
+    "Classic Spinach Pizza Americana",
+    "Glazed Bacon Pizza Americana",
+    "Hawaiian Delight Pizza Americana",
+    "Hi Protein Pizza Americana",
+    "Angus Steakhouse Pizza",
+    "Belly Buster",
+    "Classic Beef N' Onion",
+    "Classic Cheese",
+    "Friday Special",
+    "Garlic N Cheese",
+    "Glazed Bacon",
+    "Hawaiian Delight",
+    "Hi Protein Supreme",
+    "Manager's Choice",
+    "Manager's Choice Pizza Americana",
+    "Merry Pepperoni Holiday Pizza",
+    "Pepperoni",
+    "Pepperoni Crrrunch",
+    "Pizza Bianca",
+    "Pizza Bianca Pizza Americana",
+    "Scallop Primo Pizza",
+    "Shakey's Special",
+    "Spinach & Glazed Bacon",
+    "Spinach & Mushroom",
+    "Spinach & Shrimp",
+    "Texas Chicken BBQ",
+    "Texas Chicken BBQ Pizza Americana",
+    "Truffle Four Cheese",
+    "Truffle Greens Pizza",
+]
+
+evaluation_options = ["Standard", "Non-Standard"]
+
 store_servers = [
     "Quezon Avenue",
     "SM North Edsa",
@@ -44,7 +81,7 @@ with container:
         # Multiselect filter for 'Pizza Classification'
         selected_pizza_classifications = st.multiselect(
             "Filter by Pizza Flavor:",
-            st.session_state.pizza_flavors,
+            pizza_flavors,
         )
 
 # Convert datetime64[ns] to date for comparison
@@ -87,14 +124,14 @@ st.data_editor(
         ),
         "Pizza Classification": st.column_config.SelectboxColumn(
             label="Pizza Classification",
-            options=st.session_state.pizza_flavors,
+            options=pizza_flavors,
             help="Select the pizza classification",
             width="medium",
             required=True, 
         ),
         "Pizza Evaluation": st.column_config.SelectboxColumn(
             label="Pizza Evaluation",
-            options=st.session_state.evaluation_options,
+            options=evaluation_options,
             help="Select the pizza evaluation",
             width="medium",
             required=True,  
