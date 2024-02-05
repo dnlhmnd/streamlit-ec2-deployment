@@ -1,2 +1,7 @@
 [theme]
 base="light"
+
+[browser]
+serverPort = 443
+serverAddress = "learningmod.ialchemy.info"
+gatherUsageStats = false
