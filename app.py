@@ -289,10 +289,10 @@ with container:
                 # Display a default image when DataFrame is empty
                 st.image('static/shakeys_logo.png', use_column_width="auto")  
 
-with container4:
-    container4.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
-    num_rows = len(filtered_df)
-    st.markdown(f"<p style='font-size: 20px; font-weight: bold;'>Images to classify: {num_rows}</p>", unsafe_allow_html=True)        
+#with container4:
+#    container4.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
+#    num_rows = len(filtered_df)
+#    st.markdown(f"<p style='font-size: 20px; font-weight: bold;'>Images to classify: {num_rows}</p>", unsafe_allow_html=True)        
 
 with container2:
     st.data_editor(
